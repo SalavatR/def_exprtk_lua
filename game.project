@@ -2,7 +2,7 @@
 title = def_exprtk_lua
 
 [library]
-include_dirs = native_logger
+include_dirs = exprtk_lua
 
 [bootstrap]
 main_collection = /main.collectionc
