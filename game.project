@@ -1,0 +1,12 @@
+[project]
+title = def_exprtk_lua
+
+[library]
+include_dirs = native_logger
+
+[bootstrap]
+main_collection = /main.collectionc
+
+[input]
+game_binding = /builtins/input/all.input_bindingc
+

@@ -1,0 +1,9 @@
+function init(self)
+	local result_table = exprtk_lua.compile_expression("(z?(a + b):(c-b))<100", {
+		a = 13,
+		b = 12,
+		c = 14,
+		z = false
+    })
+	pprint(result_table)
+end
