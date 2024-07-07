@@ -18,4 +18,4 @@ buildweb: $(BOB_FILE)
 
 serve3:
 	@echo "Serve dist directory on http://localhost:8000"
-	@cd dist/pieceofcake && python3 -m http.server 8000
+	@cd dist/def_exprtk_lua && python3 -m http.server 8000
