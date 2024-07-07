@@ -11,8 +11,6 @@
 
 template < typename T >
 static int CompileExpression(lua_State * L) {
-
-    // Проверяем, что на стеке у нас строка и таблица
     if (!lua_isstring(L, 1) || !lua_istable(L, 2)) {
         lua_pushstring(L, "Expected string and table as arguments");
         lua_error(L);
@@ -31,8 +29,7 @@ static int CompileExpression(lua_State * L) {
 
     const char * expression_string = luaL_checkstring(L, 1);
 
-    //Начинаем итерацию по таблице
-    lua_pushnil(L); // первая ключ-значение пара
+    lua_pushnil(L); 
     while (lua_next(L, 2) != 0) {
         const char * key = luaL_checkstring(L, -2);
         if (lua_isboolean(L, -1)) {
@@ -100,7 +97,6 @@ static int CompileExpression(lua_State * L) {
 }
 
 static int GetVariables(lua_State * L) {
-
     const char * expression_string = luaL_checkstring(L, 1);
     std::vector < std::string > variable_list;
 

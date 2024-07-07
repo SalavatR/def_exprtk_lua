@@ -21826,92 +21826,92 @@ namespace exprtk
             helper_assembly_.run_modifiers(lexer());
          }
 
-         // if (
-         //      settings_.numeric_check_enabled () ||
-         //      settings_.bracket_check_enabled () ||
-         //      settings_.sequence_check_enabled()
-         //    )
-         // {
-         //    if (!helper_assembly_.run_scanners(lexer()))
-         //    {
-         //       if (helper_assembly_.error_token_scanner)
-         //       {
-         //          lexer::helper::bracket_checker*            bracket_checker_ptr     = 0;
-         //          lexer::helper::numeric_checker<T>*         numeric_checker_ptr     = 0;
-         //          lexer::helper::sequence_validator*         sequence_validator_ptr  = 0;
-         //          lexer::helper::sequence_validator_3tokens* sequence_validator3_ptr = 0;
+         if (
+              settings_.numeric_check_enabled () ||
+              settings_.bracket_check_enabled () ||
+              settings_.sequence_check_enabled()
+            )
+         {
+            if (!helper_assembly_.run_scanners(lexer()))
+            {
+               if (helper_assembly_.error_token_scanner)
+               {
+                  lexer::helper::bracket_checker*            bracket_checker_ptr     = 0;
+                  lexer::helper::numeric_checker<T>*         numeric_checker_ptr     = 0;
+                  lexer::helper::sequence_validator*         sequence_validator_ptr  = 0;
+                  lexer::helper::sequence_validator_3tokens* sequence_validator3_ptr = 0;
 
-         //          if (0 != (bracket_checker_ptr = dynamic_cast<lexer::helper::bracket_checker*>(helper_assembly_.error_token_scanner)))
-         //          {
-         //             set_error(
-         //                make_error(parser_error::e_token,
-         //                           bracket_checker_ptr->error_token(),
-         //                           "ERR005 - Mismatched brackets: '" + bracket_checker_ptr->error_token().value + "'",
-         //                           exprtk_error_location));
-         //          }
-         //          else if (0 != (numeric_checker_ptr = dynamic_cast<lexer::helper::numeric_checker<T>*>(helper_assembly_.error_token_scanner)))
-         //          {
-         //             for (std::size_t i = 0; i < numeric_checker_ptr->error_count(); ++i)
-         //             {
-         //                lexer::token error_token = lexer()[numeric_checker_ptr->error_index(i)];
+                  if (0 != (bracket_checker_ptr = dynamic_cast<lexer::helper::bracket_checker*>(helper_assembly_.error_token_scanner)))
+                  {
+                     set_error(
+                        make_error(parser_error::e_token,
+                                   bracket_checker_ptr->error_token(),
+                                   "ERR005 - Mismatched brackets: '" + bracket_checker_ptr->error_token().value + "'",
+                                   exprtk_error_location));
+                  }
+                  else if (0 != (numeric_checker_ptr = dynamic_cast<lexer::helper::numeric_checker<T>*>(helper_assembly_.error_token_scanner)))
+                  {
+                     for (std::size_t i = 0; i < numeric_checker_ptr->error_count(); ++i)
+                     {
+                        lexer::token error_token = lexer()[numeric_checker_ptr->error_index(i)];
 
-         //                set_error(
-         //                   make_error(parser_error::e_token,
-         //                              error_token,
-         //                              "ERR006 - Invalid numeric token: '" + error_token.value + "'",
-         //                              exprtk_error_location));
-         //             }
+                        set_error(
+                           make_error(parser_error::e_token,
+                                      error_token,
+                                      "ERR006 - Invalid numeric token: '" + error_token.value + "'",
+                                      exprtk_error_location));
+                     }
 
-         //             if (numeric_checker_ptr->error_count())
-         //             {
-         //                numeric_checker_ptr->clear_errors();
-         //             }
-         //          }
-         //          else if (0 != (sequence_validator_ptr = dynamic_cast<lexer::helper::sequence_validator*>(helper_assembly_.error_token_scanner)))
-         //          {
-         //             for (std::size_t i = 0; i < sequence_validator_ptr->error_count(); ++i)
-         //             {
-         //                std::pair<lexer::token,lexer::token> error_token = sequence_validator_ptr->error(i);
+                     if (numeric_checker_ptr->error_count())
+                     {
+                        numeric_checker_ptr->clear_errors();
+                     }
+                  }
+                  else if (0 != (sequence_validator_ptr = dynamic_cast<lexer::helper::sequence_validator*>(helper_assembly_.error_token_scanner)))
+                  {
+                     for (std::size_t i = 0; i < sequence_validator_ptr->error_count(); ++i)
+                     {
+                        std::pair<lexer::token,lexer::token> error_token = sequence_validator_ptr->error(i);
 
-         //                set_error(
-         //                   make_error(parser_error::e_token,
-         //                              error_token.first,
-         //                              "ERR007 - Invalid token sequence: '" +
-         //                              error_token.first.value  + "' and '" +
-         //                              error_token.second.value + "'",
-         //                              exprtk_error_location));
-         //             }
+                        set_error(
+                           make_error(parser_error::e_token,
+                                      error_token.first,
+                                      "ERR007 - Invalid token sequence: '" +
+                                      error_token.first.value  + "' and '" +
+                                      error_token.second.value + "'",
+                                      exprtk_error_location));
+                     }
 
-         //             if (sequence_validator_ptr->error_count())
-         //             {
-         //                sequence_validator_ptr->clear_errors();
-         //             }
-         //          }
-         //          else if (0 != (sequence_validator3_ptr = dynamic_cast<lexer::helper::sequence_validator_3tokens*>(helper_assembly_.error_token_scanner)))
-         //          {
-         //             for (std::size_t i = 0; i < sequence_validator3_ptr->error_count(); ++i)
-         //             {
-         //                std::pair<lexer::token,lexer::token> error_token = sequence_validator3_ptr->error(i);
+                     if (sequence_validator_ptr->error_count())
+                     {
+                        sequence_validator_ptr->clear_errors();
+                     }
+                  }
+                  else if (0 != (sequence_validator3_ptr = dynamic_cast<lexer::helper::sequence_validator_3tokens*>(helper_assembly_.error_token_scanner)))
+                  {
+                     for (std::size_t i = 0; i < sequence_validator3_ptr->error_count(); ++i)
+                     {
+                        std::pair<lexer::token,lexer::token> error_token = sequence_validator3_ptr->error(i);
 
-         //                set_error(
-         //                   make_error(parser_error::e_token,
-         //                              error_token.first,
-         //                              "ERR008 - Invalid token sequence: '" +
-         //                              error_token.first.value  + "' and '" +
-         //                              error_token.second.value + "'",
-         //                              exprtk_error_location));
-         //             }
+                        set_error(
+                           make_error(parser_error::e_token,
+                                      error_token.first,
+                                      "ERR008 - Invalid token sequence: '" +
+                                      error_token.first.value  + "' and '" +
+                                      error_token.second.value + "'",
+                                      exprtk_error_location));
+                     }
 
-         //             if (sequence_validator3_ptr->error_count())
-         //             {
-         //                sequence_validator3_ptr->clear_errors();
-         //             }
-         //          }
-         //       }
+                     if (sequence_validator3_ptr->error_count())
+                     {
+                        sequence_validator3_ptr->clear_errors();
+                     }
+                  }
+               }
 
-         //       return false;
-         //    }
-         // }
+               return false;
+            }
+         }
 
          return true;
       }

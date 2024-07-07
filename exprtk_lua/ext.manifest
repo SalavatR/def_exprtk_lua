@@ -1,1 +1,6 @@
 name: "ExprtkLua"
+
+platforms:
+    web:
+        context:
+            flags: ["-frtti"]
